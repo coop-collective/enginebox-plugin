@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "enginebox": {
+      "type": "http",
+      "url": "https://enginebox.coopcollective.dev/mcp"
+    }
+  }
+}

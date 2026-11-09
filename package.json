@@ -1,0 +1,6 @@
+{
+  "name": "enginebox-plugin",
+  "license": "MIT",
+  "private": true,
+  "scripts": { "test": "sh test/check.sh" }
+}

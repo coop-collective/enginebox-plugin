@@ -1,0 +1,12 @@
+{
+  "name": "enginebox",
+  "version": "0.1.0",
+  "description": "Run coding agents on Engine Box from your assistant: launch Codex, Claude or Cursor runs on the pools and repositories you approve, check and cancel them, and create repositories, through the hosted Engine Box MCP server with OAuth sign-in. Fleet administration is not exposed.",
+  "author": { "name": "Coop Collective" },
+  "homepage": "https://enginebox.coopcollective.dev",
+  "repository": "https://github.com/coop-collective/enginebox-plugin",
+  "license": "MIT",
+  "keywords": ["enginebox", "agents", "coding-agents", "codex", "claude", "cursor", "mcp", "oauth"],
+  "logo": "assets/logo.svg",
+  "skills": "skills/"
+}

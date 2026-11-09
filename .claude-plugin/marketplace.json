@@ -1,0 +1,14 @@
+{
+  "name": "enginebox",
+  "owner": { "name": "Coop Collective" },
+  "metadata": { "description": "Engine Box for your assistant: run coding agents on your Engine Box pools through its OAuth MCP server." },
+  "plugins": [
+    {
+      "name": "enginebox",
+      "source": "./",
+      "description": "Launch, check and cancel Codex, Claude and Cursor runs on Engine Box pools you approve, and manage hosted repositories.",
+      "category": "development",
+      "keywords": ["enginebox", "agents", "coding-agents", "mcp", "oauth"]
+    }
+  ]
+}
