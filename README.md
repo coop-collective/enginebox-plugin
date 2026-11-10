@@ -48,8 +48,10 @@ codex mcp login enginebox
 
 Ask for the work: "fix the failing checkout test in alpha/shop and push a branch", or
 `/enginebox:build <task>`. The `enginebox` skill teaches the assistant to check its grants, write a
-complete prompt with acceptance criteria, launch with an idempotency key, poll the run, and report the
-branch and evidence. A finished run does not merge or deploy anything.
+complete prompt with acceptance criteria, launch on a branch with an idempotency key, poll the run, and
+report the branch, the evidence and the branch's live preview URL. Engine Box starts that preview by
+itself when the run succeeds (from the branch's `.enginebox/config.json` `dev` section; if it is
+missing, the assistant has a follow-up run add it). Nothing is merged until you say "merge it".
 
 ## Tools (server `enginebox`)
 
