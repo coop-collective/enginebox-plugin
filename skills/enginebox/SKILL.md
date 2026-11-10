@@ -1,11 +1,11 @@
 ---
 name: enginebox
-description: Run coding agents on Engine Box through the hosted `enginebox` MCP server. Use when the user (or your own plan) needs code built, fixed, reviewed or investigated in a repository: launch a Codex, Claude or Cursor run on a branch of an approved repository, poll it to the end, hand the user its live branch preview URL, merge it when they say so, cancel it, or list and create hosted repositories. Also use on an Engine Box tool error (unauthorized, insufficient scope, queue full). Not for creating or deleting machines, templates or storage; that is owner administration and is not available here.
+description: Run coding agents on Engine Box through the hosted `enginebox` MCP server. Use when the user (or your own plan) needs code built, fixed, reviewed or investigated in a repository: launch a Codex, Claude or Grok Build run on a branch of an approved repository, poll it to the end, hand the user its live branch preview URL, merge it when they say so, cancel it, or list and create hosted repositories. Also use on an Engine Box tool error (unauthorized, insufficient scope, queue full). Not for creating or deleting machines, templates or storage; that is owner administration and is not available here.
 ---
 
 # Engine Box
 
-Engine Box runs the official Codex, Claude and Cursor CLIs on private cloud workspaces. You never
+Engine Box runs the official Codex, Claude Code and Grok Build CLIs on private cloud workspaces. You never
 run code yourself: you hand a run a task and a repository, it works in a fresh checkout and pushes a
 branch, and you read what it did. The MCP server is `enginebox` at
 `https://enginebox.coopcollective.dev/mcp`; it signs in with OAuth, and the owner chooses on the
@@ -23,6 +23,11 @@ consent screen which pools, workspaces and repository projects this connection m
 | One fixed workspace instead of a pool | `agent_launch` / `agent_run` / `agent_cancel` with `{host_id, name, ...}` |
 | Repositories | `repository_list({project})`, `repository_get({project, name})`, `repository_create({project, name, description?})` |
 | Subscription headroom | `usage_accounts({provider?})` |
+
+`provider` is `codex`, `claude` or `grok` (Grok Build, on the user's X subscription; models such as
+`grok-4.7` or the faster `grok-4.7-build-fast`). Use the one the user names. Otherwise prefer `grok`
+or `codex`, and check `usage_accounts` before a long Claude run: Claude may be at its weekly limit and
+billing overage.
 
 Every tool answers `{status, body}`. `isError: true` means the controller refused or failed; read
 `status` and `body.error` before doing anything else.

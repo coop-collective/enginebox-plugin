@@ -1,7 +1,7 @@
 # Engine Box plugin
 
 Lets your AI assistant run coding agents on [Engine Box](https://enginebox.coopcollective.dev): it hands
-a task and a repository to a Codex, Claude or Cursor run on a cloud workspace, follows the run to the
+a task and a repository to a Codex, Claude or Grok Build run on a cloud workspace, follows the run to the
 end and reports what changed. It connects to the hosted Engine Box MCP server over HTTP with OAuth, so
 there is no token in this repository or on your machine; you sign in once and choose, on Engine Box's
 consent screen, which pools and repository projects the assistant may use.
