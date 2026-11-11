@@ -82,19 +82,22 @@ generator writes). `.enginebox/config.json` gets a top-level `"dev": {"template"
 ```json
 {"schema_version": 1, "kind": "dev", "id": "dev", "revision": 1,
  "image": "node@sha256:<digest>",
- "prepare": ["pnpm", "install", "--frozen-lockfile"],
- "command": ["pnpm", "dev", "--host", "0.0.0.0"],
+ "prepare": ["corepack", "pnpm", "install", "--frozen-lockfile"],
+ "command": ["corepack", "pnpm", "dev", "--host", "0.0.0.0"],
+ "env": {"COREPACK_ENABLE_DOWNLOAD_PROMPT": "0"},
  "installInputs": ["package.json", "pnpm-lock.yaml"],
  "ports": [{"name": "web", "protocol": "http", "port": 5173, "expose": true}],
  "health": {"port": "web", "path": "/"},
- "writableDirs": ["node_modules/.vite"], "memoryMiB": 2048}
+ "writableDirs": ["node_modules/.vite", "node_modules/.vite-temp"], "memoryMiB": 2048}
 ```
 
 Tell the agent: pin the image by digest (Docker Hub's `node:24-bookworm-slim` manifest
 `docker-content-digest`); `installInputs` lists every `package.json` and the lockfile; the dev
 command listens on `0.0.0.0` at the declared port; app data goes under `$ENGINEBOX_DATA_DIR`
 (wrangler: `--local --persist-to /data/wrangler`); `writableDirs` names caches only, never all of
-`node_modules`; keep the repository's package manager. If the dev server needs real secrets, leave
+`node_modules` (the source is read-only at runtime; Vite needs both `.vite` and `.vite-temp`);
+keep the repository's package manager, run through `corepack` because the node image has no
+`pnpm` or `yarn` on PATH. Engine Box already lets Vite answer the preview hostname. If the dev server needs real secrets, leave
 the preview out and say so.
 
 ## Acting without asking
